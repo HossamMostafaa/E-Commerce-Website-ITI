@@ -3,10 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
+    <title>ITI || Online Store </title>
+    <link rel="icon" src="img/icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <link rel="stylesheet" href="CSS/Style.css">
+
 </head>
 <body>
-<h1>Hello Ashraf</h1> 
+<header>
+    <div class="top_header">
+        <div class="container">
+            <a href="#" class="logo"><img src="img/logo4.jpg" alt="logo" width="200"  height="100"></a>
+            <form action="search_box" class="search_box">
+                <div class="select_box">
+                    <select id="category" name"category">
+                        <option value="All categories">All categories</option>
+                        <option value="Electronics & Digita">Electronics & Digita</option>
+                        <option value="Phones & Tabelt">Phones & Tabelt</option>
+                        <option value="Fashion & Clothings">Fashion & Clothings</option>
+                        <option value="Television & Mentor">Television & Mentor</option>
+                        <option value="Jewelry & Watches">Jewelry & Watches</option>
+                        <option value="Washing Machine">Washing Machine</option>
+                        <option value="Toys Hobbies">Toys Hobbies</option>
 
+                    </select>
+                </div>
+
+                <input type="text" name="Search" id="search" placeholder="Search For Products" required>
+
+                <button type="submit" class="btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+                <div class="header_icon">
+                    <div class="icon">
+                        <a href="#"><i class="fa-regular fa-heart"></i>
+                         <span class="count Favourit">0</span>
+                        </a>
+                       
+                    </div>
+                        <div class="icon">
+                          <a href="#">   <i class="fa-solid fa-cart-arrow-down"></i> </a> 
+                            <span class="count item_header">0</span>
+                        </div>
+
+                </div>
+
+
+        </div>
+    </div>
+
+<div class="bottom_header">
+<div class="container">
+    <nav class="nav">
+        <div class="category_nav">
+
+            <div onclick="openCategorList()" class="category_btn">
+
+
+                    <i class="fa-solid fa-bars"></i>  
+                 <p>Browse Category</p>
+                    <i class="fa-solid fa-angle-down"></i>
+
+            </div>
+                <div class="category_nav_list">
+
+                    <a href="#">Top 10 Offers</a>
+                    <a href="#">Electroins & Digit</a>
+                    <a href="#">Phones & tablet</a>
+                    <a href="#">Fashion & Colthing</a>
+                    <a href="#">Telwvision & Mentor</a>
+                    <a href="#">Jewelry & Watches</a>
+                    <a href="#">Toyes & Hoppies</a>
+
+
+                </div>
+
+        </div>
+        <ul class="nav_links">
+            <li class="active"><a href="#">Home</a></li>
+            <li ><a href="#">About</a></li>
+            <li><a href="#">Accesories</a></li>
+            <li "><a href="#">Blog</a></li>
+            <li "> <a href="#">Contact</a></li>
+
+
+
+
+        </ul>
+
+
+    </nav>
+
+<div class="login_signup btns" >
+    <a href="#"class="btn">Login  <i class="fa-solid fa-right-to-bracket"></i></wa-icon></a>
+
+    <a href="#"class="btn">Sign UP <i class="fa-solid fa-user-plus"></i> </a>
+
+</div>
+
+
+</div>    
+</div>
+
+
+
+
+</header>
+
+<div class="slider">
+    <div class="container">
+        <div class="slid-swab mySwiper">
+        <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <a href="#" > <img src="img/banner_home1.png"></a>
+      </div>
+      <div class="swiper-slide">
+        <a href="" ><img src="img/banner_home2.png"></a>
+      </div>
+
+    </div>
+
+ <div class="swiper-pagination"></div>
+
+  
+        </div>
+
+        <div class="banner_2">
+            <a href="#"><img src="img/banner_home3.png"></a>
+        </div>
+    </div>
+</div>
+
+<div class="banner_4">
+    <div class="container">
+        <div class="box">
+            <a href="#" class="link_btn"></a>
+            <img src="img/banner3_1.png">
+            <div class="text">
+                <h5>Break Disk</h5>
+                <h5>deals in this </h5>
+                <div class="sale">
+                    <p>UP <br></p>
+                    <span>70%</span>
+                   
+                </div>
+                 <h6>Shop Now</h6>
+            </div>
+        </div>
+
+ <div class="box">
+            <a href="#" class="link_btn"></a>
+            <img src="img/banner3_2.png">
+            <div class="text">
+                <h5>Break Disk</h5>
+                <h5>deals in this </h5>
+                <div class="sale">
+                    <p>UP <br></p>
+                    <span>70%</span>
+                   
+                </div>
+                 <h6>Shop Now</h6>
+            </div>
+        </div>
+
+ <div class="box">
+            <a href="#" class="link_btn"></a>
+            <img src="img/banner3_3.png">
+            <div class="text">
+                <h5>Break Disk</h5>
+                <h5>deals in this </h5>
+                <div class="sale">
+                    <p>UP <br></p>
+                    <span>70%</span>
+                    
+                </div>
+                <h6>Shop Now</h6>
+            </div>
+        </div>
+ <div class="box">
+            <a href="#" class="link_btn"></a>
+            <img src="img/banner3_4.png">
+            <div class="text">
+                <h5>Break Disk</h5>
+                <h5>deals in this </h5>
+                <div class="sale">
+                    <p>UP <br></p>
+                    <span>70%</span>
+                  
+                </div>
+                  <h6>Shop Now</h6>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="Js/main.js"></script>
 </body>
 </html>
