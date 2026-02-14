@@ -15,14 +15,5 @@ category_nav_list.classList.toggle("active")
 //     list.style.display = "none";
 //   }
 // }
-var swiper = new Swiper(".slid-swab", {
-      pagination: {
-        el: ".swiper-pagination",
-        dynamicBullests:true, 
-        clickable:true
-      },
-      autoplay:{
-        delay :25000
-      }
-      ,loop :true
-    });
+
+
