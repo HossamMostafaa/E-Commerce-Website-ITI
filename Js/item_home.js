@@ -1,17 +1,3 @@
-// fetch('products.json')
-// .then(response=>response.json())
-// .then(data=>{
-//     console.log(data);
-//     const swiper_items_sale =document.getElementById("swiper_items_sale");
-// data.forEeach(product=>{
-//     if(product.old_price){
-//         swiper_items_sale.innerHTML=`
-//         `
-//     }
-// })
-// }
-// )
-
 
 fetch('products.json')
 .then(response => response.json())
@@ -77,6 +63,9 @@ fetch('products.json')
             
         }
     })
+
+
+
 
 
     data.forEach(product => {
