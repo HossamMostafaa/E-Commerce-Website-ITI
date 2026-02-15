@@ -71,3 +71,69 @@ function toggleFavourite(productId) {
   addFavourite(productId);
   return true;
 }
+
+
+
+
+/* FAv  ...*/ 
+
+
+
+// جلب favourites من localStorage
+let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+const favItemsContainer = document.getElementById("cart_items"); // استخدم نفس الـ div اللي موجود عندك
+const cartTotalEl = document.getElementById("cart_total"); // لو حابب تحسب السعر الإجمالي
+const cartContent = document.getElementById("cart-content");
+const cartEmpty = document.getElementById("cart-empty");
+
+function renderFavourites() {
+    favItemsContainer.innerHTML = "";
+
+    if (favourites.length === 0) {
+        cartEmpty.style.display = "block";
+        cartContent.style.display = "none";
+        return;
+    } else {
+        cartEmpty.style.display = "none";
+        cartContent.style.display = "block";
+    }
+
+    let total = 0;
+
+    favourites.forEach(item => {
+        total += item.price;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("cart-item");
+        itemDiv.innerHTML = `
+            <div class="cart-item-info">
+                <img src="${item.image}" alt="${item.name}" width="100">
+                <h4>${item.name}</h4>
+                <p>Price: ${item.price} EGP</p>
+                <button class="remove-btn" data-id="${item.id}">Remove ❌</button>
+            </div>
+            <hr>
+        `;
+        favItemsContainer.appendChild(itemDiv);
+    });
+
+    cartTotalEl.textContent = total + " EGP";
+
+    // حدث Remove
+    document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.dataset.id);
+            removeFromFav(id);
+        });
+    });
+}
+
+function removeFromFav(id) {
+    favourites = favourites.filter(item => item.id !== id);
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+    renderFavourites();
+}
+
+// بدء التحميل
+renderFavourites();
