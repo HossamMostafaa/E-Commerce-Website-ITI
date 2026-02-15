@@ -1336,7 +1336,7 @@ body:not(.auth-page) .cart-page { padding-top: 180px; }
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
     .checkout-layout { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
@@ -1347,7 +1347,7 @@ body:not(.auth-page) .cart-page { padding-top: 180px; }
 @media (max-width: 480px) {
     .cart-item-row { flex-wrap: wrap; }
     .cart-item-row img { width: 60px; height: 60px; }
-}
+} */
 
 .close_menu,
 .open_menu{
