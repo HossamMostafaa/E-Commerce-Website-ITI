@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | ITI Online Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="CSS/Style.css">
+</head>
+<body class="auth-page">
+    <header>
+        <div class="top_header">
+            <div class="container">
+                <a href="index.html" class="logo"><img src="img/logo4.jpg" alt="logo" width="200" height="100"></a>
+                <div class="header_icon auth-header-icons">
+                    <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Store</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-card">
+            <h1><i class="fa-solid fa-right-to-bracket"></i> Sign In</h1>
+            <p class="auth-subtitle">Welcome back! Please sign in to continue.</p>
+
+            <form id="signin-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div id="signin-message" class="auth-message"></div>
+                <button type="submit" class="btn btn-auth">Sign In</button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="Js/auth.js"></script>
+    <script>
+        (function() {
+            // Redirect if already logged in
+            if (isLoggedIn()) {
+                const params = new URLSearchParams(location.search);
+                const returnUrl = params.get('return');
+                window.location.href = returnUrl || 'index.html';
+                return;
+            }
+
+            const form = document.getElementById('signin-form');
+            const messageEl = document.getElementById('signin-message');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                messageEl.textContent = '';
+                messageEl.className = 'auth-message';
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const result = signIn(email, password);
+
+                if (result.success) {
+                    messageEl.className = 'auth-message success';
+                    messageEl.textContent = result.message;
+                    const params = new URLSearchParams(location.search);
+                    const returnUrl = params.get('return') || 'index.html';
+                    setTimeout(function() { window.location.href = returnUrl; }, 800);
+                } else {
+                    messageEl.className = 'auth-message error';
+                    messageEl.textContent = result.message;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

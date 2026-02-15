@@ -1,205 +1,82 @@
-// let category_nav_list=document.querySelector(".category_nav_list")
+/**
+ * Main - Category menu, add-to-cart handlers, cart link auth check
+ */
 
-// function openCategorList(){
-  
-// category_nav_list.classList.toggle("active")
-// }
+var category_nav_list = document.querySelector(".category_nav_list");
 
-
-// function openCategorList() {
-//   let list = document.querySelector(".category_nav_list");
-
-//   if (list.style.display === "none") {
-//     list.style.display = "block";
-//   } else {
-//     list.style.display = "none";
-//   }
-// }
-
-
-let category_nav_list = document.querySelector(".category_nav_list");
-
-function Open_Categ_list(){
-    category_nav_list.classList.toggle("active")
-
+function Open_Categ_list() {
+  if (category_nav_list) category_nav_list.classList.toggle("active");
 }
 
-let nav_links = document.querySelector(".nav_links")
+var nav_links = document.querySelector(".nav_links");
 
 function open_Menu() {
-    nav_links.classList.toggle("active")
+  if (nav_links) nav_links.classList.toggle("active");
 }
 
-
-var cart = document.querySelector('.cart');
-
-function open_close_cart() {
-    cart.classList.toggle("active")
-}
-
-fetch('products.json')
-.then(response => response.json())
-.then(data => {
-    
-    const addToCartButtons = document.querySelectorAll(".btn_add_cart")
-
-    addToCartButtons.forEach(button =>{
-        button.addEventListener("click", (event) => {
-            const productId = event.target.getAttribute('data-id')
-            const selcetedProduct = data.find(product => product.id == productId)
-            
-
-            addToCart(selcetedProduct)
-
-            const allMatchingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
-
-            allMatchingButtons.forEach(btn =>{
-                btn.classList.add("active")
-                btn.innerHTML = `      <i class="fa-solid fa-cart-shopping"></i> Item in cart`
-            })
-        })
-    })
-    
-    
-})
-
-
-function addToCart(product) {
-
-    let cart = JSON.parse(localStorage.getItem('cart')) || []
-
-    cart.push({... product , quantity: 1})
-    localStorage.setItem('cart' , JSON.stringify(cart))
-
-
-    updateCart()
-}
-
-
-
-function updateCart() {
-    const cartItemsContainer = document.getElementById("cart_items")
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || []
-
-
-    var total_Price = 0
-    var total_count = 0
-
-    cartItemsContainer.innerHTML = "" ;
-    cart.forEach((item , index) => {
-
-        let total_Price_item = item.price * item.quantity;
-
-        total_Price += total_Price_item
-        total_count += item.quantity
-
-    
-        cartItemsContainer.innerHTML += `
-        
-            <div class="item_cart">
-                <img src="${item.img}" alt="">
-                <div class="content">
-                    <h4>${item.name}</h4>
-                    <p class="price_cart">$${total_Price_item}</p>
-                    <div class="quantity_control">
-                        <button class="decrease_quantity" data-index=${index}>-</button>
-                        <span class="quantity">${item.quantity}</span>
-                        <button class="Increase_quantity" data-index=${index}>+</button>
-                    </div>
-                </div>
-
-                <button class="delete_item" data-inex="${index}" ><i class="fa-solid fa-trash-can"></i></button>
-            </div>
-
-
-        `
-    })
-
-
-    const price_cart_total = document.querySelector('.price_cart_toral')
-    
-    const count_item_cart = document.querySelector('.Count_item_cart')
-
-    const count_item_header = document.querySelector('.count_item_header')
-    
-    price_cart_total.innerHTML = `$ ${total_Price}`
-
-    count_item_cart.innerHTML = total_count
-
-    count_item_header.innerHTML = total_count
-
-
-    const increaseButtons = document.querySelectorAll(".Increase_quantity")
-    const decreaseButtons = document.querySelectorAll(".decrease_quantity")
-
-    increaseButtons.forEach(button => {
-        button.addEventListener("click" , (event) =>{
-            const itemIndex = event.target.getAttribute("data-index")
-            increaseQuantity(itemIndex)
-        })
-    })
-
-
-    decreaseButtons.forEach(button => {
-        button.addEventListener("click" , (event) =>{
-            const itemIndex = event.target.getAttribute("data-index")
-            decreaseQuantity(itemIndex)
-        })
-    })
-
-
-
-    const delteButtons = document.querySelectorAll('.delete_item')
-    
-    delteButtons.forEach(button =>{
-        button.addEventListener('click' , (event) =>{
-            const itemIndex = event.target.closest('button').getAttribute('data-inex')
-            removeFromCart(itemIndex)
-        })
-    })
-
-}
-
-
-function increaseQuantity(index){
-    let cart = JSON.parse(localStorage.getItem('cart')) || []
-    cart[index].quantity += 1
-    localStorage.setItem('cart' , JSON.stringify(cart))
-    updateCart()
-}
-
-function decreaseQuantity(index){
-    let cart = JSON.parse(localStorage.getItem('cart')) || []
-
-    if (cart[index].quantity > 1){
-        cart[index].quantity -= 1
+// Cart link: redirect to signin if not logged in
+(function() {
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href="cart.html"]');
+    if (link && typeof requireAuth === 'function' && !isLoggedIn()) {
+      e.preventDefault();
+      window.location.href = 'signin.html?return=' + encodeURIComponent('cart.html');
     }
- 
-    localStorage.setItem('cart' , JSON.stringify(cart))
-    updateCart()
+  });
+})();
+
+/**
+ * Attach add-to-cart handlers. Uses product from window.PRODUCTS (item_home.js) when available.
+ * Cart items stored: id, name, price, quantity, image.
+ */
+function attachAddToCartHandlers(container) {
+  if (!container) return;
+  var btns = container.querySelectorAll(".btn_add_cart");
+  btns.forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+      var target = e.currentTarget;
+      if (target.classList.contains("active")) return;
+      var productId = target.getAttribute("data-id");
+      if (!productId) return;
+      var product = typeof getProductById === 'function' ? getProductById(productId) : null;
+      if (!product && window.PRODUCTS) {
+        product = window.PRODUCTS.find(function(p) { return p.id == productId; });
+      }
+      if (!product) return;
+      addToCart(product, 1);
+      target.classList.add("active");
+      target.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Item in cart';
+      var allBtns = document.querySelectorAll('.btn_add_cart[data-id="' + productId + '"]');
+      allBtns.forEach(function(b) {
+        b.classList.add("active");
+        b.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Item in cart';
+      });
+      var countEl = document.querySelector('.item_header');
+      if (countEl && typeof getCartCount === 'function') countEl.textContent = getCartCount();
+    });
+  });
 }
 
-
-
-
-
-function removeFromCart(index) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || []
-
-    const removeProduct = cart.splice(index , 1)[0]
-    localStorage.setItem('cart', JSON.stringify(cart))
-    updateCart()
-    updateButoonsState(removeProduct.id)
+/**
+ * Attach favourite (wishlist) handlers. Toggle favourite, prevent duplicates, visual feedback.
+ */
+function attachFavouriteHandlers(container) {
+  if (!container || typeof toggleFavourite !== 'function') return;
+  var hearts = container.querySelectorAll(".btn_favourite");
+  hearts.forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      var productId = btn.getAttribute("data-id");
+      if (!productId) return;
+      var added = toggleFavourite(productId);
+      btn.classList.toggle("active", added);
+      btn.querySelector("i").className = added ? "fa-solid fa-heart" : "fa-regular fa-heart";
+      btn.title = added ? "Remove from favourites" : "Add to favourites";
+      var favCount = document.querySelector(".Favourit");
+      if (favCount && typeof getFavourites === 'function') favCount.textContent = getFavourites().length;
+    });
+  });
 }
 
-
-function updateButoonsState(productId) {
-    const allMatchingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
-    allMatchingButtons.forEach(button =>{
-        button.classList.remove('active');
-        button.innerHTML = `      <i class="fa-solid fa-cart-shopping"></i> add to cart`
-    })
-}
-
-updateCart()
+window.attachAddToCartHandlers = attachAddToCartHandlers;
+window.attachFavouriteHandlers = attachFavouriteHandlers;

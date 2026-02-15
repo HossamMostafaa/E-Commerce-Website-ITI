@@ -14,41 +14,6 @@
 <body>
 
 
- <div class="cart">
-        <div class="top_cart">
-            <h3>Cart Items : <span class="Count_item_cart">0</span></h3>
-            <span onclick="open_close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
-        </div>
-
-
-        <div class="items_in_cart" id="cart_items">
-
-
-
-        </div>
-
-
-        <div class="bottom_cart">
-            <div class="total">
-                <p>subtotal</p>
-                <p class="price_cart_toral">$0</p>
-            </div>
-
-            <div class="button_cart">
-                <a href="#" class="btn_cart btn">Checkout</a>
-                <span onclick="open_close_cart()" class="btn_cart trans_bg btn">Shop More</span>
-            </div>
-        </div>
-
-    </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -56,27 +21,10 @@
 
     <div class="top_header">
         <div class="container">
-            <a href="#" class="logo"><img src="img/logo4.jpg" alt="logo" width="200"  height="100"></a>
-            <form action="search_box" class="search_box">
-                <div class="select_box">
-                    <select id="category" name"category">
-                        <option value="All categories">All categories</option>
-                        <option value="Electronics & Digita">Electronics & Digita</option>
-                        <option value="Phones & Tabelt">Phones & Tabelt</option>
-                        <option value="Fashion & Clothings">Fashion & Clothings</option>
-                        <option value="Television & Mentor">Television & Mentor</option>
-                        <option value="Jewelry & Watches">Jewelry & Watches</option>
-                        <option value="Washing Machine">Washing Machine</option>
-                        <option value="Toys Hobbies">Toys Hobbies</option>
-
-                    </select>
-                </div>
-
-                <input type="text" name="Search" id="search" placeholder="Search For Products" required>
-
-                <button type="submit" class="btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+            <a href="index.html" class="logo"><img src="img/logo4.jpg" alt="logo" width="200"  height="100"></a>
+            <form class="search_box" id="search-form" onsubmit="return false;">
+                <input type="text" id="search" name="search" placeholder="Search products..." autocomplete="off">
+                <button type="button" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
                 <div class="header_icon">
@@ -84,13 +32,11 @@
                         <a href="#"><i class="fa-regular fa-heart"></i>
                          <span class="count Favourit">0</span>
                         </a>
-                       
                     </div>
-                        <div class="icon">
-                          <a href="#">   <i class="fa-solid fa-cart-arrow-down"></i> </a> 
-                            <span class="count item_header">0</span>
-                        </div>
-
+                    <div class="icon">
+                        <a href="cart.html" class="cart-link"><i class="fa-solid fa-cart-arrow-down"></i></a>
+                        <span class="count item_header">0</span>
+                    </div>
                 </div>
 
 
@@ -105,7 +51,7 @@
     <nav class="nav">
         <div class="category_nav">
 
-            <div onclick="openCategorList()" class="category_btn">
+            <div onclick="Open_Categ_list()" class="category_btn">
 
 
                     <i class="fa-solid fa-bars"></i>  
@@ -135,11 +81,11 @@
 
               <span onclick="open_Menu()" class="close_menu"><i class="fa-regular fa-circle-xmark"></i></span>
 
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Accesories</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                      
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html">Cart</a></li>
 
 
 
@@ -148,12 +94,7 @@
 
     </nav>
 
-<div class="login_signup btns" >
-    <a href="#"class="btn">Login  <i class="fa-solid fa-right-to-bracket"></i></wa-icon></a>
-
-    <a href="#"class="btn">Sign UP <i class="fa-solid fa-user-plus"></i> </a>
-
-</div>
+<div class="login_signup btns"></div>
 
 
 </div>    
@@ -190,7 +131,6 @@
         
     </div>
 </div>
-
 
 
 
@@ -435,7 +375,7 @@
                 <div class="icons_footer">
                     <a href="#"><i class="fa-solid fa-phone"></i></a>
                     <a href="https://www.facebook.com/hossam.mostafa.734638/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/hossam_mustaffaa/"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
@@ -481,7 +421,7 @@
 
         <div class="bottom_footer">
             <div class="container">
-                <p>&copy; <span> ITI Online Store.</span> All Rights Reserved.</p>
+                <p>&copy; <span> ITI Online Shopy.</span> All Rights Reserved.</p>
 
                 <div class="payment_img">
                     <img src="img/payment_method.png" alt="">
@@ -494,10 +434,14 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
+<script src="Js/auth.js"></script>
+<script src="Js/storage.js"></script>
+<script src="Js/favourites.js"></script>
+<script src="Js/shared.js"></script>
 <script src="Js/main.js"></script>
 <script src="Js/swiper.js"></script>
 <script src="Js/item_home.js"></script>
+<script src="Js/search.js"></script>
 
 </body>
 </html>

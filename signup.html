@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | ITI Online Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="CSS/Style.css">
+</head>
+<body class="auth-page">
+    <header>
+        <div class="top_header">
+            <div class="container">
+                <a href="index.html" class="logo"><img src="img/logo4.jpg" alt="logo" width="200" height="100"></a>
+                <div class="header_icon auth-header-icons">
+                    <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Store</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-card">
+            <h1><i class="fa-solid fa-user-plus"></i> Sign Up</h1>
+            <p class="auth-subtitle">Create an account to shop and manage your cart.</p>
+
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="At least 6 characters" required minlength="6">
+                </div>
+                <div id="signup-message" class="auth-message"></div>
+                <button type="submit" class="btn btn-auth">Create Account</button>
+            </form>
+
+            <p class="auth-footer">
+                Already have an account? <a href="signin.html">Sign In</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="Js/auth.js"></script>
+    <script>
+        (function() {
+            if (isLoggedIn()) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const form = document.getElementById('signup-form');
+            const messageEl = document.getElementById('signup-message');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                messageEl.textContent = '';
+                messageEl.className = 'auth-message';
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const result = signUp(email, password, name);
+
+                if (result.success) {
+                    messageEl.className = 'auth-message success';
+                    messageEl.textContent = result.message;
+                    setTimeout(function() { window.location.href = 'index.html'; }, 800);
+                } else {
+                    messageEl.className = 'auth-message error';
+                    messageEl.textContent = result.message;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
