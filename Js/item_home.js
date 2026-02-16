@@ -208,3 +208,4 @@ function attachFavouriteHandlers(container) {
 // Initialize on load
 updateFavCount();
 updateFavIcons();
+
