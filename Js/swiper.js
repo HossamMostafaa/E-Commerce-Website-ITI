@@ -10,21 +10,6 @@ var swiper = new Swiper(".slid-swab", {
       ,loop :true
     });
 
-/*  swiper silde products*/
-//    var swiper = new Swiper(".slide_product", {
-// slidesperview: 5, 
-// spaceBetween : 20, 
-//       pagination: {
-//         // el: ".swiper-pagination",
-//         // dynamicBullests:true, 
-//         clickable:true
-//       },
-//       autoplay:{
-//         delay :25000
-//       }
-//       ,loop :true
-//     });
-
 
 
 

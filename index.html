@@ -20,6 +20,10 @@
 
 
 
+<div id="productsContainer"></div>
+
+
+
 <header>
 
     <div class="top_header">
@@ -61,15 +65,14 @@
                     <i class="fa-solid fa-angle-down"></i>
 
             </div>
-                <div class="category_nav_list">
 
-                    <a href="#">All Category </a>
-                    <a href="#">Electroins </a>
-                    <a href="#">Mobiles</a>
-                    <a href="#">Appliances</a>
+<div class="category_nav_list">
+    <a href="#" data-target="all">All Category</a>
+    <a href="#" data-target="electronics">Electronics</a>
+    <a href="#" data-target="mobiles">Mobiles</a>
+    <a href="#" data-target="appliances">Appliances</a>
+</div>
 
-
-                </div>
 
         </div>
         <ul class="nav_links">
@@ -201,7 +204,7 @@
 </div>
 
 
-<div class="slider_products slide">
+<div class="slider_products slide"id="electronics" >
 
     <div class="container">
 
@@ -249,7 +252,7 @@
 
 
 
-<div class="slider_products slide">
+<div class="slider_products slide" id="electronics">
 
     <div class="container">
 
@@ -281,11 +284,11 @@
 
 
 
-<div class="slider_products slide">
+<div class="slider_products slide" id="appliances">
 
     <div class="container">
 
-        <div class="slide_product mySwiper">
+        <div class="slide_product mySwiper" >
 
             <div class="top_slide">
                 <h2><i class="fa-solid fa-tags"></i> Appliances </h2>
@@ -332,7 +335,7 @@
 
 
 
- <div class="slider_products slide">
+ <div class="slider_products slide" id="mobiles">
 
     <div class="container">
 
@@ -443,6 +446,7 @@
 <script src="Js/swiper.js"></script>
 <script src="Js/item_home.js"></script>
 <script src="Js/search.js"></script>
+<script src="Js/category.js"></script>
 
 </body>
 </html>
