@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | ITI Online Store</title>
+    <title>Contact Us | Shopy Store</title>
+        <link rel="icon" type="image/png" href="img/logo4.jpg">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="CSS/Style.css">
 </head>
@@ -24,7 +26,7 @@
                     <ul class="nav_links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="accessories.html">Accessories</a></li>
+                       
                         <li class="active"><a href="contact.html">Contact</a></li>
                         <li><a href="cart.html">Cart</a></li>
                     </ul>
@@ -65,7 +67,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span>ITI Online Store.</span> All Rights Reserved.</p>
+            <p>&copy; <span>Shopy Store.</span> All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -76,7 +78,7 @@
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var msg = document.getElementById('contact-message');
-            msg.textContent = 'Thank you! Your message has been sent. (Demo - no backend)';
+            msg.textContent = 'Thank you! Your message has been sent.';
             msg.className = 'contact-success-msg success';
             this.reset();
         });

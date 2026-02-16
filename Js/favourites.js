@@ -74,66 +74,62 @@ function toggleFavourite(productId) {
 
 
 
-
-/* FAv  ...*/ 
-
-
-
-// جلب favourites من localStorage
 let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
-const favItemsContainer = document.getElementById("cart_items"); // استخدم نفس الـ div اللي موجود عندك
-const cartTotalEl = document.getElementById("cart_total"); // لو حابب تحسب السعر الإجمالي
-const cartContent = document.getElementById("cart-content");
-const cartEmpty = document.getElementById("cart-empty");
+const favItemsContainer = document.getElementById("fav-items");
+const favContent = document.getElementById("fav-content");
+const favEmpty = document.getElementById("fav-empty");
 
 function renderFavourites() {
     favItemsContainer.innerHTML = "";
 
     if (favourites.length === 0) {
-        cartEmpty.style.display = "block";
-        cartContent.style.display = "none";
+        favEmpty.style.display = "block";
+        favContent.style.display = "none";
         return;
-    } else {
-        cartEmpty.style.display = "none";
-        cartContent.style.display = "block";
     }
 
-    let total = 0;
+    favEmpty.style.display = "none";
+    favContent.style.display = "block";
 
     favourites.forEach(item => {
-        total += item.price;
-
         const itemDiv = document.createElement("div");
-        itemDiv.classList.add("cart-item");
+        itemDiv.classList.add("fav-item");
         itemDiv.innerHTML = `
-            <div class="cart-item-info">
-                <img src="${item.image}" alt="${item.name}" width="100">
-                <h4>${item.name}</h4>
-                <p>Price: ${item.price} EGP</p>
-                <button class="remove-btn" data-id="${item.id}">Remove ❌</button>
-            </div>
-            <hr>
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>${item.price} EGP</p>
+            <button class="remove-btn" data-id="${item.id}">Remove</button>
         `;
         favItemsContainer.appendChild(itemDiv);
     });
 
-    cartTotalEl.textContent = total + " EGP";
-
-    // حدث Remove
     document.querySelectorAll(".remove-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             const id = parseInt(btn.dataset.id);
-            removeFromFav(id);
+            removeFromFavourite(id);
         });
     });
 }
 
-function removeFromFav(id) {
+function removeFromFavourite(id) {
     favourites = favourites.filter(item => item.id !== id);
     localStorage.setItem("favourites", JSON.stringify(favourites));
     renderFavourites();
 }
 
-// بدء التحميل
 renderFavourites();
+
+
+
+
+
+
+
+
+
+
+
+
+
+

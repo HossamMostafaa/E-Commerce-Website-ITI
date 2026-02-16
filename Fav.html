@@ -3,69 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart | Athar Store </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Favourite Products | Shopy Store</title>
+
     <link rel="stylesheet" href="CSS/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
-<body>
-    <header>
-        <div class="top_header">
-            <div class="container">
-                <a href="index.html" class="logo"><img src="img/logo4.jpg" alt="logo" width="200" height="100"></a>
-                <div class="header_icon">
-                    <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
-                </div>
-            </div>
-        </div>
-        <div class="bottom_header">
-            <div class="container">
-                <nav class="nav">
-                    <ul class="nav_links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="accessories.html">Accessories</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li class="active"><a href="cart.html">Cart</a></li>
-                    </ul>
-                </nav>
-                <div class="login_signup btns"></div>
-            </div>
-        </div>
-    </header>
 
-    <main class="cart-page">
+<body class="cart-page">
+
+<header>
+    <div class="top_header">
         <div class="container">
-            <h1 class="page-title"><i class="fa-solid fa-cart-shopping"></i> Your Cart</h1>
-
-            <div id="cart-empty" class="cart-empty">
-                <i class="fa-solid fa-cart-plus"></i>
-                <p>Your cart is empty</p>
-                <a href="index.html" class="btn">Continue Shopping</a>
-            </div>
-
-            <div id="cart-content" class="cart-content">
-                <div class="cart-items" id="cart_items"></div>
-                <div class="cart-summary">
-                    <div class="cart-total">
-                        <span>Total:</span>
-                        <span class="price_cart_total" id="cart_total">$0</span>
-                    </div>
-                    <a href="checkout.html" class="btn btn-checkout" id="checkout_btn">
-                        Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
+            <a href="index.html" class="logo">
+                <img src="img/logo4.jpg" alt="logo" width="200" height="100">
+            </a>
+            <div class="header_icon">
+                <a href="index.html">
+                    <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+                </a>
             </div>
         </div>
-    </main>
+    </div>
 
-    <footer>
+    <div class="bottom_header">
         <div class="container">
-            <p>&copy; <span>ITI Online Store.</span> All Rights Reserved.</p>
+            <nav class="nav">
+                <ul class="nav_links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="fav.html">Favourite</a></li>
+                </ul>
+            </nav>
         </div>
-    </footer>
+    </div>
+</header>
+
+<main class="fav-page">
+    <div class="container">
+
+        <h1 class="page-title">
+            <i class="fa-solid fa-heart"></i> My Favourite Products
+        </h1>
+
+        <!-- Empty -->
+        <div id="fav-empty" class="cart-empty">
+            <i class="fa-solid fa-heart-circle-plus"></i>
+            <p>No favourite products yet</p>
+            <a href="index.html" class="btn">Add Some Items</a>
+        </div>
+
+        <!-- Favourite Items -->
+        <div id="fav-content">
+            <div id="fav-items"></div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; <span>Shopy Store.</span> All Rights Reserved.</p>
+    </div>
+</footer>
+
 <script src="Js/favourites.js"></script>
-    <script src="Js/auth.js"></script>
-    <script src="Js/storage.js"></script>
-    <!-- <script src="Js/cart.js"></script> -->
 </body>
 </html>

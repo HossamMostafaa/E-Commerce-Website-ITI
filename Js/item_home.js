@@ -142,3 +142,69 @@ function renderSection(containerId, filterFn) {
   };
   window._homeProducts = PRODUCTS;
 })();
+// --- Favourite Functions ---
+function getFavourites() {
+    return JSON.parse(localStorage.getItem("favourites")) || [];
+}
+
+function isFavourite(productId) {
+    let favourites = getFavourites();
+    return favourites.some(p => p.id === productId);
+}
+
+function addToFavourite(product) {
+    let favourites = getFavourites();
+
+    // Toggle favourite
+    if (!isFavourite(product.id)) {
+        favourites.push(product);
+        localStorage.setItem("favourites", JSON.stringify(favourites));
+        alert("Added to Favourite ✅");
+    } else {
+        favourites = favourites.filter(p => p.id !== product.id);
+        localStorage.setItem("favourites", JSON.stringify(favourites));
+        alert("Removed from Favourite ❌");
+    }
+    updateFavCount();
+    // تحديث أيكون Heart في الصفحة
+    updateFavIcons();
+}
+
+// تحديث عداد Favourite في الهيدر
+function updateFavCount() {
+    let favourites = getFavourites();
+    let favCountEl = document.querySelector(".Favourit");
+    if(favCountEl) favCountEl.textContent = favourites.length;
+}
+
+// تحديث أيكون Heart في جميع المنتجات
+function updateFavIcons() {
+    document.querySelectorAll(".btn_favourite").forEach(span => {
+        let id = parseInt(span.dataset.id);
+        let icon = span.querySelector("i");
+        if (isFavourite(id)) {
+            span.classList.add("active");
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+        } else {
+            span.classList.remove("active");
+            icon.classList.remove("fa-solid");
+            icon.classList.add("fa-regular");
+        }
+    });
+}
+
+// --- Attach Favourite Handlers to Products ---
+function attachFavouriteHandlers(container) {
+    container.querySelectorAll(".btn_favourite").forEach(span => {
+        span.addEventListener("click", function() {
+            let id = parseInt(span.dataset.id);
+            let product = getProductById(id);
+            addToFavourite(product);
+        });
+    });
+}
+
+// Initialize on load
+updateFavCount();
+updateFavIcons();
